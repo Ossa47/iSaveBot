@@ -5,7 +5,7 @@ import os
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 bot = telebot.TeleBot(BOT_TOKEN)
 
-CHANNEL_ID = '@iGoViral'  # Replace with your channel's ID
+CHANNEL_ID = '@iGoViral'  # Your channel's ID
 
 # Check if the user is a member of the channel
 def is_member(user_id):
@@ -34,9 +34,3 @@ def download_video(message):
             info = ydl.extract_info(url, download=True)
             filename = ydl.prepare_filename(info)
         with open(filename, "rb") as video:
-            bot.send_video(message.chat.id, video)
-        os.remove(filename)
-    except Exception as e:
-        bot.reply_to(message, f"Error: {str(e)}")
-
-bot.polling()
